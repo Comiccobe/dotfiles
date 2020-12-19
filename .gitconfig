@@ -1,0 +1,66 @@
+[user]
+	name = Jakob Hillerström
+	email = zurric@gmail.com
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[core]
+	excludesfile = /Users/jakobhillerstrom/.gitignore_global
+	whitespace = blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+[commit]
+  verbose = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+  # Quote / unquote a sh command, converting it to / from a git alias string
+  quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+  quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\([\\\"]\\)/\\1/g'; printf \"\\n\" #"
+  cm = commit
+  b = branch
+  bco = "!f() { git branch $1; git checkout $1; }; f"
+	d = difftool
+	dl = difftool HEAD^ HEAD
+  dx = "!f() { git difftool HEAD~\"$1^\"; }; f"
+  co = checkout
+  ft = fetch
+  s = status
+  all = add -A
+  gr = log --graph --pretty=oneline --abbrev-commit
+  l = log --pretty=oneline --abbrev-commit
+  ch = cherry -v --abbrev
+  chd = cherry -v --abbrev develop
+  chm = "!f() { git cherry -v --abbrev $(git branch | grep -w main || git branch | grep -w master); }; f"
+  chmain = "!f() { if [git branch | grep -w main = \"main\"]; then \"git cherry -v --abbrev main\"; else \"git cherry -v --abbrev master\"; }; f"
+  diffw = diff --word-diff=color
+  diffwm = diff --word-diff=color -U0
+  diffn = diff --name-only
+  diffs = diff --staged
+  diffwin = diff --ignore-cr-at-eol
+  ours = checkout --ours -- 
+  theirs = checkout --theirs -- 
+  dp = "!f() { git diff :/**\"$1\"**; }; f"
+  ap = "!f() { git add :/**\"$1\"**; }; f"
+  dm = "!f() { git diff \"master -- $1\" \"$1\"; }; f"
+  au = ! git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n
+  ph = push origin HEAD
+  diss = checkout -- .
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  clean-branches = remote prune origin
+  s-commits = shortlog -sn --no-merges
+  s-authors = !git log --format='%aN' | sort -u
+  s-lines = "!f () { git log --author=\"$1\" --no-merges --pretty=tformat: --numstat | awk '{inserted+=$1; deleted+=$2; delta+=$1-$2; ratio=deleted/inserted} END {printf \"Commit stats:\\n- Lines added (total)....  %s\\n- Lines deleted (total)..  %s\\n- Total lines (delta)....  %s\\n- Add./Del. ratio (1:n)..  1 : %s\\n\", inserted, deleted, delta, ratio }' -; }; f"
+  sf = stash push -m
+  fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
+  fzd = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git diff"
