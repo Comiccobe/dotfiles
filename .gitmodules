@@ -49,3 +49,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-razor"]
 	path = .vim/pack/git-plugins/start/vim-razor
 	url = https://github.com/adamclerk/vim-razor
+[submodule ".config/kitty/kitty-themes"]
+	path = .config/kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git
