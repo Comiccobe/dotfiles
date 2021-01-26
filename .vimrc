@@ -95,6 +95,8 @@ nnoremap <leader>sd <c-w>w<c-d><c-w>w
 nnoremap <leader>fix :Prettier<CR>
 nnoremap <leader>light :call LightMode()<CR>
 nnoremap <leader>dark :call DarkMode()<CR>
+nmap <leader>nh <Plug>(GitGutterNextHunk)
+nmap <leader>ph <Plug>(GitGutterPrevHunk)
 
 function! Fullscreen()
   exe "wincmd \|"
@@ -424,7 +426,27 @@ Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'leafOfTree/vim-vue-plugin'
+Plug 'Quramy/tsuquyomi'
 Plug 'Quramy/tsuquyomi-vue'
+Plug 'airblade/vim-gitgutter'
+Plug 'bkad/CamelCaseMotion'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-repeat'
+Plug 'godlygeek/tabular'
+Plug 'grassdog/tagman.vim'
+Plug 'wellle/targets.vim'
+Plug 'markonm/traces.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
+Plug 'prettier/vim-prettier'
+Plug 'adamclerk/vim-razor'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Use neco-ghc for completion
@@ -585,7 +607,7 @@ let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
 augroup PrettierOnSave
   autocmd!
-  " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.hbs PrettierAsync
 augroup END
 
 " Neoformat prettier_d
