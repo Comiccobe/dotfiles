@@ -8,7 +8,7 @@ ln -sv ~/source/dotfiles/.tmux.theme.conf ~/.tmux.theme.conf
 ln -sv ~/source/dotfiles/.tmux.theme.dark.conf ~/.tmux.theme.dark.conf
 ln -sv ~/source/dotfiles/.tmux.theme.light.conf ~/.tmux.theme.light.conf
 ln -sv ~/source/dotfiles/.vimrc ~/.vimrc
-ln -sv ~/source/dotfiles/.yabai ~/.yabairc
+ln -sv ~/source/dotfiles/.yabairc ~/.yabairc
 ln -sv ~/source/dotfiles/dark-theme.sh ~/dark-theme.sh
 ln -sv ~/source/dotfiles/light-theme.sh ~/light-theme.sh
 ln -sv ~/source/dotfiles/kitty ~/kitty
