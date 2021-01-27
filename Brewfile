@@ -37,6 +37,7 @@ brew "vim"
 brew "yarn"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai", args: ["HEAD"]
+cask "discord"
 cask "docker"
 cask "firefox-developer-edition"
 cask "font-fira-code"
