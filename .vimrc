@@ -417,6 +417,7 @@ set shell=/bin/bash
 set rtp+=/usr/local/opt/fzf
 packadd! matchit
 call plug#begin()
+Plug 'altercation/vim-colors-solarized'
 Plug 'knubie/vim-kitty-navigator'
 Plug 'elixir-lang/vim-elixir'
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
