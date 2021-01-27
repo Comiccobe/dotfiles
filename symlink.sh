@@ -11,5 +11,5 @@ ln -sv ~/source/dotfiles/.vimrc ~/.vimrc
 ln -sv ~/source/dotfiles/.yabairc ~/.yabairc
 ln -sv ~/source/dotfiles/dark-theme.sh ~/dark-theme.sh
 ln -sv ~/source/dotfiles/light-theme.sh ~/light-theme.sh
-ln -sv ~/source/dotfiles/kitty ~/kitty
-ln -sv ~/source/dotfiles/dev-tmux ~/dev-tmux
+ln -sv ~/source/dotfiles/kitty ~/source/kitty
+ln -sv ~/source/dotfiles/dev-tmux ~/source/dev-tmux
