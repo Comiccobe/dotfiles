@@ -50,7 +50,7 @@ let g:vim_vue_plugin_use_typescript = 1
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
+  \ 'bg':      ['bg', 'Background'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
