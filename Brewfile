@@ -35,6 +35,7 @@ brew "tmux"
 brew "typescript"
 brew "vim"
 brew "yarn"
+brew "youtube-dl"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai", args: ["HEAD"]
 cask "discord"
@@ -44,6 +45,7 @@ cask "font-fira-code"
 cask "google-chrome"
 cask "kitty"
 cask "krisp"
+cask "microsoft-teams"
 cask "parallels"
 cask "pgadmin4"
 cask "rider"
@@ -55,3 +57,5 @@ mas "GoodLinks", id: 1474335294
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "PiPer", id: 1421915518
+mas "Vimari", id: 1480933944
