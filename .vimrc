@@ -16,6 +16,7 @@ set nocompatible
 set cryptmethod=blowfish2
 set wildcharm=<C-z>
 set laststatus=2
+set updatetime=100
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
