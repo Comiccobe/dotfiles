@@ -451,6 +451,11 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
+augroup SignColumnBackground
+  autocmd!
+  autocmd ColorScheme * highlight! link SignColumn LineNr
+augroup END
+
 " Use neco-ghc for completion
 augroup Haskell
   autocmd!
