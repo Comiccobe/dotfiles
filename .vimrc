@@ -4,7 +4,6 @@
 " TODO: Finish sql integration
 " TODO: Integrate migrate.exe
 " TODO: Add a way for project specific .vimrc
-" TODO: Add abbr for treu->true and so on
 " TODO: Add these to .md files:
 "   lägg till skiljetecken till undo
 "   inoremap . .<c-g>u
