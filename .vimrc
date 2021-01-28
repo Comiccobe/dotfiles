@@ -97,6 +97,7 @@ nnoremap <leader>light :call LightMode()<CR>
 nnoremap <leader>dark :call DarkMode()<CR>
 nmap <leader>nh <Plug>(GitGutterNextHunk)
 nmap <leader>ph <Plug>(GitGutterPrevHunk)
+nnoremap <leader>gd :GitGutterLineHighlightsToggle<CR>
 
 function! Fullscreen()
   exe "wincmd \|"
