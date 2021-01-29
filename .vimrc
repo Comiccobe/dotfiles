@@ -454,6 +454,8 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
+let g:gitgutter_set_sign_backgrounds = 1
+
 augroup SignColumnBackground
   autocmd!
   autocmd ColorScheme * highlight! link SignColumn LineNr
