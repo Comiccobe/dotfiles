@@ -28,6 +28,9 @@ vnoremap > >gv
 
 abbreviate treu true
 
+" For comparing PR against specific commit
+" let g:gitgutter_diff_base = '99ce15b322c6e2413715a353975bf7330c105179'
+
 " augroup myvimrc
 "     autocmd!
 "     autocmd QuickFixCmdPost [^l]* cwindow
