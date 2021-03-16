@@ -5,8 +5,16 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
+  pager = delta
 	excludesfile = /Users/jakobhillerstrom/.gitignore_global
 	whitespace = blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+[delta]
+  plus-color = "#012800"
+  minus-color = "#340001"
+  syntax-theme = Solarized (dark)
+  line-numbers = true
+[interactive]
+  diffFilter = delta --color-only
 [commit]
   verbose = true
 [difftool "sourcetree"]

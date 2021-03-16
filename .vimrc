@@ -16,7 +16,7 @@ set nocompatible
 set cryptmethod=blowfish2
 set wildcharm=<C-z>
 set laststatus=2
-set updatetime=100
+" set updatetime=500
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
@@ -76,6 +76,7 @@ nnoremap <C-p> :FZF<CR>
 " leader commands
 nnoremap <leader>l :Lines<CR>
 nnoremap <leader>k :BLines<CR>
+nnoremap <leader>bc :BCommits<CR>
 nnoremap <leader>a :Locate 
 nnoremap <leader>ag :Ag .<CR>
 nnoremap <leader>cod :call SwitchTabPage(1)<CR>
@@ -422,7 +423,6 @@ set rtp+=/usr/local/opt/fzf
 packadd! matchit
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
-Plug 'knubie/vim-kitty-navigator'
 Plug 'elixir-lang/vim-elixir'
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -438,7 +438,6 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular'
 Plug 'grassdog/tagman.vim'
@@ -452,6 +451,7 @@ Plug 'prettier/vim-prettier'
 Plug 'adamclerk/vim-razor'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mustache/vim-mustache-handlebars'
 call plug#end()
 
 let g:gitgutter_set_sign_backgrounds = 1
@@ -584,6 +584,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+let g:camelcasemotion_key = '<leader>'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_mruf_case_sensitive = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
@@ -693,20 +694,16 @@ endfunction
 function! SetInitialTheme()
   let currentTheme = $CURRENT_TERMINAL_THEME
   if currentTheme == 'dark'
-    exe "set background=dark"
-    exe "colorscheme solarized"
-    highlight ColorColumn ctermbg=white
+    call DarkMode()
   elseif currentTheme == 'light'
-    exe "set background=light"
-    exe "colorscheme solarized"
-    highlight ColorColumn ctermbg=black
-  else
     call LightMode()
+  else
+    call DarkMode()
   endif
 endfunction
 
 syntax enable
-" call SetInitialTheme()
+call SetInitialTheme()
 
 " search for more occurences of selection
 vnoremap // y/\V<C-R>"<CR>
