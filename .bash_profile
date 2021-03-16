@@ -31,5 +31,6 @@ alias lines="ag --nobreak --noheading . | fzf"
 alias g="git"
 alias winc="cd ~/Parallels/Windows\ 10.pvm/Windows\ Disks/C"
 alias jb="jobs"
+alias reload-sa="brew services stop yabai && sudo yabai --uninstall-sa && sudo yabai --install-sa && brew services start yabai && sudo yabai --load-sa"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
