@@ -627,7 +627,7 @@ let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
 augroup PrettierOnSave
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.hbs PrettierAsync
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.hbs Prettier
 augroup END
 
 " Neoformat prettier_d
