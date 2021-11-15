@@ -424,7 +424,7 @@ command! -nargs=1 Silent
 \   execute 'silent !' . <q-args>
 \ | execute 'redraw!'
 
-set shell=/bin/bash
+set shell=/bin/zsh
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
 set rtp+=/usr/local/opt/fzf
 packadd! matchit
