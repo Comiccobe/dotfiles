@@ -72,3 +72,6 @@
   sf = stash push -m
   fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
   fzd = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git diff"
+  fco = "!git for-each-ref refs/heads --format '%(refname:short)' | fzf --print0 -m | xargs -0 -t -o git checkout"
+[pull]
+	rebase = false
