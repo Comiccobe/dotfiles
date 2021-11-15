@@ -698,7 +698,7 @@ function! SetInitialTheme()
   elseif currentTheme == 'light'
     call LightMode()
   else
-    call DarkMode()
+    call LightMode()
   endif
 endfunction
 

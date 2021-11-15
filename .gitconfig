@@ -11,7 +11,7 @@
 [delta]
   plus-color = "#012800"
   minus-color = "#340001"
-  syntax-theme = Solarized (dark)
+  syntax-theme = Solarized (light)
   line-numbers = true
 [interactive]
   diffFilter = delta --color-only
