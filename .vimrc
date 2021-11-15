@@ -102,6 +102,13 @@ nnoremap <leader>dark :call DarkMode()<CR>
 nmap <leader>nh <Plug>(GitGutterNextHunk)
 nmap <leader>ph <Plug>(GitGutterPrevHunk)
 nnoremap <leader>gd :GitGutterLineHighlightsToggle<CR>
+nnoremap <leader>ep A <esc>p
+nnoremap <leader>gw :Gw<CR>
+
+tnoremap <c-h> <c-w><c-h>
+tnoremap <c-l> <c-w><c-l>
+" tnoremap <c-j> <c-w><c-j>
+" tnoremap <c-k> <c-w><c-k>
 
 function! Fullscreen()
   exe "wincmd \|"
