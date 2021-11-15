@@ -481,8 +481,8 @@ augroup END
 
 
 
-function! ArgsGrep(pattern)
-  exe 'args `grep -Rl ' . a:pattern . ' *`'
+function! ArgsGrep(folder, pattern)
+  exe 'args `grep -Rl ' . a:pattern . ' ' . a:folder . '`'
 endfunction
 
 function! DelTagOfFile(file)
