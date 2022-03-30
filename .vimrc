@@ -16,7 +16,109 @@ set nocompatible
 set cryptmethod=blowfish2
 set wildcharm=<C-z>
 set laststatus=2
-" set updatetime=500
+
+" COC SPECIFIC
+set updatetime=300
+set encoding=utf-8
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=1
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> <c-n> <Plug>(coc-diagnostic-prev)
+nmap <silent> <c-m> <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> <leader>ref <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>fx  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+let g:coc_global_extensions=['coc-vetur', 'coc-omnisharp']
+
+" COC SPECIFIC END
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
@@ -99,9 +201,6 @@ nnoremap <leader>sd <c-w>w<c-d><c-w>w
 nnoremap <leader>fix :Prettier<CR>
 nnoremap <leader>light :call LightMode()<CR>
 nnoremap <leader>dark :call DarkMode()<CR>
-nmap <leader>nh <Plug>(GitGutterNextHunk)
-nmap <leader>ph <Plug>(GitGutterPrevHunk)
-nnoremap <leader>gd :GitGutterLineHighlightsToggle<CR>
 nnoremap <leader>ep A <esc>p
 nnoremap <leader>gw :Gw<CR>
 
@@ -152,11 +251,6 @@ map <leader>snip :execute "vsp ~/.vim/UltiSnips/" . &filetype . ".snippets"<CR>
 nmap <silent> <leader>thm :call SwitchTheme()<CR>
 
 " typescript specific
-nmap <leader>def :TsuDefinition<CR>
-nmap <leader>ref :TsuReferences<CR>
-nmap <leader>imp :TsuImport<CR>
-nmap <leader>ren :TsuRenameSymbol<CR>
-nmap <Leader>tip : <C-u>echo tsuquyomi#hint()<CR>
 nmap <silent> <leader>psp :call SplitParams()<CR>
 nmap <silent> <leader>isp :call SplitImports()<CR>
 nmap <silent> <leader>jsp :call SplitJSX()<CR>
@@ -438,12 +532,8 @@ Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'leafOfTree/vim-vue-plugin'
-Plug 'Quramy/tsuquyomi'
-Plug 'Quramy/tsuquyomi-vue'
-Plug 'airblade/vim-gitgutter'
 Plug 'bkad/CamelCaseMotion'
 Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular'
@@ -459,9 +549,9 @@ Plug 'adamclerk/vim-razor'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ziglang/zig.vim'
 call plug#end()
-
-let g:gitgutter_set_sign_backgrounds = 1
 
 augroup SignColumnBackground
   autocmd!
@@ -474,10 +564,10 @@ augroup Haskell
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 augroup END
 
-augroup Javascript
-  autocmd!
-  autocmd FileType javascript setlocal omnifunc=tsuquyomi#complete
-augroup END
+" augroup Javascript
+"   autocmd!
+"   autocmd FileType javascript setlocal omnifunc=tsuquyomi#complete
+" augroup END
 
 
 
@@ -575,7 +665,7 @@ augroup END
 
 set ttimeoutlen=50  " Make Esc work faster
 set swapfile
-set backup
+" set backup
 set undofile
 set undolevels=1000
 set undoreload=10000
@@ -599,13 +689,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:UltiSnipsExpandTrigger="<tab>"                                            
 let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"   
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-nmap <silent> <C-n> <Plug>(ale_previous_wrap)
-nmap <silent> <C-m> <Plug>(ale_next_wrap)
 
 let g:highlightedyank_highlight_duration = 100
 
@@ -629,43 +712,6 @@ augroup PrettierOnSave
   autocmd!
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.hbs Prettier
 augroup END
-
-" Neoformat prettier_d
-" augroup FastPrettierOnChange
-"   autocmd!
-"   autocmd FileType typescript setlocal formatprg=prettier_dnc\ --local-only\ --pkg-conf\ --fallback
-"   autocmd BufWritePre,TextChanged,InsertLeave *.ts Neoformat
-"   autocmd BufWritePre,TextChanged,InsertLeave *.tsx Neoformat
-
-"   autocmd FileType javascript setlocal formatprg=prettier_dnc\ --local-only\ --pkg-conf\ --fallback
-"   autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
-"   autocmd BufWritePre,TextChanged,InsertLeave *.jsx Neoformat
-" augroup END
-
-" " Use formatprg when available
-" let g:neoformat_try_formatprg = 1
-" " https://github.com/sbdchd/neoformat/issues/25
-" let g:neoformat_only_msg_on_error = 1
-
-" Write this in your vimrc file
-" let g:ale_lint_on_text_changed = 'never'
-" You can disable this option too
-" if you don't want linters to run on opening a file
-" let g:ale_lint_on_enter = 0
-" Put this in vimrc or a plugin file of your own.
-" After this is configured, :ALEFix will try and fix your JS code with ESLint.
-let g:ale_fixers = {
-\   'typescript': ['tslint'],
-\}
-" let g:ale_fixers = {}
-" let g:ale_fixers['javascript'] = ['prettier']
-" let g:ale_fixers['typescript'] = ['prettier']
-" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all --arrow-parens always'
-" let g:ale_typescript_prettier_options = '--single-quote --trailing-comma all --arrow-parens always'
-
-" Set this setting in vimrc if you want to fix files automatically on save.
-" This is off by default.
-let g:ale_fix_on_save = 0
 
 " TODO: change this to a toggle function
 " TODO: find a way to have this work as a global keybind
@@ -737,5 +783,5 @@ augroup END
 
 " c-specific
 nnoremap <leader>sh :!sh build-mac.sh<CR>
-hi debugPC term=reverse ctermbg=black guibg=darkblue
-hi debugBreakpoint term=reverse ctermbg=red guibg=red
+" hi debugPC term=reverse ctermbg=black guibg=darkblue
+" hi debugBreakpoint term=reverse ctermbg=red guibg=red
